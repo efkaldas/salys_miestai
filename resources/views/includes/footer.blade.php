@@ -1,0 +1,1 @@
+<div align="center" id="copyright text-right">© Kaunas 2019 Simple app</div>
