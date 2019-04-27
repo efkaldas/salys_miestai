@@ -100,6 +100,6 @@ class CountriesController extends Controller
             $city->delete();
         }
         $country->delete();
-        return redirect('/countries')->with('success', 'Country removed');
+        return redirect()->back()->with('success', 'Country removed');
     }
 }

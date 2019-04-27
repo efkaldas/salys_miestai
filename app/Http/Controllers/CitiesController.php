@@ -48,8 +48,9 @@ class CitiesController extends Controller
         $city->info = $request->input('info');
         $city->country_id = $id;
         $city->save();
+        $txt = (string)$id;
 
-        return redirect('/countries')->with('success', 'Country added');
+        return redirect('/countries/'.$txt)->with('success', 'City added');
     }
 
     /**
@@ -96,6 +97,6 @@ class CitiesController extends Controller
     {
         $city = City::find($id);
         $city->delete();
-        return redirect('/countries')->with('success', 'City removed');
+        return redirect()->back()->with('success', 'City removed');
     }
 }
