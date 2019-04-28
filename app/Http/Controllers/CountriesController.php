@@ -15,7 +15,7 @@ class CountriesController extends Controller
      */
     public function index()
     {
-        $countries = Country::orderBy('name', 'desc')->paginate(7);
+        $countries = Country::orderBy('name', 'asc')->paginate(7);
         return view('countries.index')->with('countries', $countries);
     }
 
@@ -71,6 +71,26 @@ class CountriesController extends Controller
     {
         //
     }
+    public function search(Request $request) {
+        $name = $request->get('name');
+        $search = Country::where('name', 'like', '%'.$name.'%')->paginate(7);
+        return view('countries.index')->with('countries', $search);
+    }
+    public function searchCity($id, Request $request) {
+        $country = Country::find($id);
+        $name = $request->get('name');
+        $country2 = $country->cities;
+        $search = City::where('name', 'like', '%'.$name.'%')->where('country_id', $id)->paginate(7);
+        $countryy = new Country;
+        $countryy->id = $id;
+        $countryy->name = "";
+        $countryy->info = "";
+        $countryy->cities = $search;
+
+
+        return view('countries.show')->with('cities', $countryy);
+    }
+    
 
     /**
      * Update the specified resource in storage.

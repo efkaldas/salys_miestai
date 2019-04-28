@@ -5,6 +5,13 @@
     <div class="text-right">
         <a class="btn btn-primary btn-lg pull-right" href="countries/create" role="button">Add new country</a>
     </div>
+    {!! Form::open(['action' => 'CountriesController@search', 'method' => 'GET']) !!}
+    <div class="active-cyan-4 mb-4">
+        {{Form::label('name', 'Search country')}}
+        {{Form::text('name', '',['class' => 'form-control', 'placeholder' => 'Search'])}}
+        {{Form::submit('Search', ['class' => 'btn btn-primary'])}}
+    </div>
+{!! Form::close() !!}
     @if(count($countries) > 0)
         @foreach($countries as $country)
             <div class="card p-3">
@@ -20,5 +27,6 @@
     @else
         <p>No countries found</p>
     @endif
+    {{$countries->links()}}
     
 @endsection

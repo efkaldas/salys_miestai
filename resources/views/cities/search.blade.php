@@ -15,8 +15,8 @@
         {{Form::submit('Search', ['class' => 'btn btn-primary'])}}
     </div>
 {!! Form::close() !!}
-    @if(count($cities->cities) > 0)
-        @foreach ($cities->cities as $city)
+    @if(count($found) > 0)
+        @foreach ($found->cities as $city)
             <div class="card p-3">
                 <h3>{{$city->name}}</h3>
                 <p>{{$city->info}}</p>

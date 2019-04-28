@@ -63,6 +63,12 @@ class CitiesController extends Controller
     {
         //
     }
+    public function search(Request $request) {
+        $country = Country::find($id);
+        $name = $request->get('name');
+        $search = $country::where('name', 'like', '%'.$name.'%');
+        return view('countries.show')->with('cities', $country);
+    }
 
     /**
      * Show the form for editing the specified resource.

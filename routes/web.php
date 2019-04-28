@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 Route::resource('countries', 'CountriesController');
 Route::resource('countries/{id}/cities','CitiesController');
-
+Route::get('/search', 'CountriesController@search');
+Route::get('countries/{id}/search', 'CountriesController@searchCity')->name('city.search');
 
